@@ -16,8 +16,8 @@ import javax.swing.SwingConstants;
 public class WinCalculator_project extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfExpression;
+	private JTextField tfResult;
 	private int op1; // 피연산자1
 	private int op2; // 피연산자2
 	private String operand; // 연산자 +-*/
@@ -57,11 +57,11 @@ public class WinCalculator_project extends JFrame {
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 15));
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setFont(new Font("굴림", Font.BOLD, 15));
-		panel.add(textField);
-		textField.setColumns(15);
+		tfExpression = new JTextField();
+		tfExpression.setHorizontalAlignment(SwingConstants.RIGHT);
+		tfExpression.setFont(new Font("굴림", Font.BOLD, 15));
+		panel.add(tfExpression);
+		tfExpression.setColumns(15);
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
@@ -70,11 +70,11 @@ public class WinCalculator_project extends JFrame {
 		lblNewLabel_1.setFont(new Font("굴림", Font.BOLD, 15));
 		panel_1.add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_1.setFont(new Font("굴림", Font.BOLD, 15));
-		textField_1.setColumns(15);
-		panel_1.add(textField_1);
+		tfResult = new JTextField();
+		tfResult.setHorizontalAlignment(SwingConstants.RIGHT);
+		tfResult.setFont(new Font("굴림", Font.BOLD, 15));
+		tfResult.setColumns(15);
+		panel_1.add(tfResult);
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2, BorderLayout.CENTER);
@@ -83,8 +83,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"0");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"0");
 			}
 		});
 		btn0.setFont(new Font("굴림", Font.BOLD, 15));
@@ -93,8 +93,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn1 = new JButton("1");
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"1");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"1");
 			}
 		});
 		btn1.setFont(new Font("굴림", Font.BOLD, 15));
@@ -103,8 +103,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn2 = new JButton("2");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"2");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"2");
 			}
 		});
 		btn2.setFont(new Font("굴림", Font.BOLD, 15));
@@ -113,8 +113,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn3 = new JButton("3");
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"3");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"3");
 			}
 		});
 		btn3.setFont(new Font("굴림", Font.BOLD, 15));
@@ -123,8 +123,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn4 = new JButton("4");
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"4");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"4");
 			}
 		});
 		btn4.setFont(new Font("굴림", Font.BOLD, 15));
@@ -133,8 +133,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn5 = new JButton("5");
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"5");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"5");
 			}
 		});
 		btn5.setFont(new Font("굴림", Font.BOLD, 15));
@@ -143,8 +143,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn6 = new JButton("6");
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"6");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"6");
 			}
 		});
 		btn6.setFont(new Font("굴림", Font.BOLD, 15));
@@ -153,8 +153,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn7 = new JButton("7");
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"7");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"7");
 			}
 		});
 		btn7.setFont(new Font("굴림", Font.BOLD, 15));
@@ -163,8 +163,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn8 = new JButton("8");
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"8");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"8");
 			}
 		});
 		btn8.setFont(new Font("굴림", Font.BOLD, 15));
@@ -173,8 +173,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btn9 = new JButton("9");
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String value = textField.getText();
-				textField.setText(value+"9");
+				String value = tfExpression.getText();
+				tfExpression.setText(value+"9");
 			}
 		});
 		btn9.setFont(new Font("굴림", Font.BOLD, 15));
@@ -183,8 +183,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnCE = new JButton("CE");
 		btnCE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText("");
-				textField_1.setText("");
+				tfExpression.setText("");
+				tfResult.setText("");
 			}
 		});
 		btnCE.setFont(new Font("굴림", Font.BOLD, 15));
@@ -193,7 +193,7 @@ public class WinCalculator_project extends JFrame {
 		JButton btnCal = new JButton("계산");
 		btnCal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op2 = Integer.parseInt(textField.getText());
+				op2 = Integer.parseInt(tfExpression.getText());
 				
 				
 				int result = 0;
@@ -218,7 +218,7 @@ public class WinCalculator_project extends JFrame {
 					}
 				}
 				
-				textField_1.setText(result+"");
+				tfResult.setText(result+"");
 				
 			}
 		});
@@ -228,8 +228,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_12 = new JButton("+");
 		btnNewButton_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("");
 				operand = "+";
 			}
 		});
@@ -239,8 +239,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_13 = new JButton("-");
 		btnNewButton_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("");
 				operand = "-";
 			}
 		});
@@ -250,8 +250,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_14 = new JButton("x");
 		btnNewButton_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("");
 				operand = "x";
 			}
 		});
@@ -261,8 +261,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_15 = new JButton("/");
 		btnNewButton_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("");
 				operand = "/";
 			}
 		});
@@ -272,9 +272,9 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton = new JButton("1/x");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("1/"+op1);
-				textField_1.setText((double)1/op1+"");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("1/"+op1);
+				tfResult.setText((double)1/op1+"");
 			}
 		});
 		panel_2.add(btnNewButton);
@@ -282,9 +282,9 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_1 = new JButton(" x²");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText(op1+"x"+op1);
-				textField_1.setText((op1*op1)+"");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText(op1+"x"+op1);
+				tfResult.setText((op1*op1)+"");
 			}
 		});
 		panel_2.add(btnNewButton_1);
@@ -292,10 +292,10 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_2 = new JButton("√x");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("root("+op1+")=");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("root("+op1+")=");
 				Double result = Math.sqrt((double)op1);
-				textField_1.setText(result+"");
+				tfResult.setText(result+"");
 			}
 		});
 		panel_2.add(btnNewButton_2);
@@ -303,8 +303,8 @@ public class WinCalculator_project extends JFrame {
 		JButton btnNewButton_3 = new JButton("x^y");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				op1 = Integer.parseInt(textField.getText());
-				textField.setText("");
+				op1 = Integer.parseInt(tfExpression.getText());
+				tfExpression.setText("");
 				operand = "**";
 			}
 		});
