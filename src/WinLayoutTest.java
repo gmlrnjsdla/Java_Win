@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class WinFail extends JFrame {
+public class WinLayoutTest extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +23,7 @@ public class WinFail extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					WinFail frame = new WinFail();
+					WinLayoutTest frame = new WinLayoutTest();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,22 +35,23 @@ public class WinFail extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WinFail() {
+	public WinLayoutTest() {
 		setTitle("로그인 실패");
 		
-		setBounds(100, 100, 353, 197);
+		setBounds(100, 100, 526, 274);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(5, 7, 10, 5));
 		
-		contentPane.setLayout(new GridLayout(3,2));
-		contentPane.add(new JButton("div1"));
-		contentPane.add(new JButton("div2"));
-		contentPane.add(new JButton("div3"));
-		contentPane.add(new JButton("div4"));
-		contentPane.add(new JButton("div5"));
+		for(int i=1; i<=31; i++) {
+			JButton b = new JButton(Integer.toString(i)); 		
+			contentPane.add(b); // 버튺을 컨텐트팬에 부착
+		}
+		
+		
 	}
 
 }
