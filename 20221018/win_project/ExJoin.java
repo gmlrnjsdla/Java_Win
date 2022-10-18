@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ExJoin extends JFrame {
 
@@ -20,6 +22,7 @@ public class ExJoin extends JFrame {
 	private JTextField tf_name;
 	private JTextField tf_phone;
 	private JTextField tf_mail;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -43,12 +46,12 @@ public class ExJoin extends JFrame {
 	public ExJoin() {
 		setTitle("회원가입");
 		
-		setBounds(100, 100, 270, 282);
+		setBounds(100, 100, 298, 309);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 2, 15, 15));
+		contentPane.setLayout(new GridLayout(0, 2, 20, 20));
 		
 		JLabel lblNewLabel = new JLabel("아이디 : ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -94,6 +97,19 @@ public class ExJoin extends JFrame {
 		tf_mail = new JTextField();
 		contentPane.add(tf_mail);
 		tf_mail.setColumns(20);
+		
+		btnNewButton = new JButton("RESET");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tf_id.setText("");
+				tf_pw.setText("");
+				tf_name.setText("");
+				tf_phone.setText("");
+				tf_mail.setText("");
+			}
+		});
+		btnNewButton.setFont(new Font("굴림", Font.BOLD, 15));
+		contentPane.add(btnNewButton);
 		
 		JButton btnJoin = new JButton("회원가입");
 		btnJoin.setFont(new Font("굴림", Font.BOLD, 15));
