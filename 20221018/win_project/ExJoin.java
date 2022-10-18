@@ -112,6 +112,16 @@ public class ExJoin extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnJoin = new JButton("회원가입");
+		btnJoin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = tf_id.getText();
+				String pw = tf_pw.getText();
+				String name = tf_name.getText();
+				String phone = tf_phone.getText();
+				String mail = tf_mail.getText();
+				System.out.println(id+"\n"+pw+"\n"+name+"\n"+phone+"\n"+mail+"\n");
+			}
+		});
 		btnJoin.setFont(new Font("굴림", Font.BOLD, 15));
 		contentPane.add(btnJoin);
 	}
