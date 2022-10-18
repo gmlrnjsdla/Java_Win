@@ -41,7 +41,8 @@ public class ExJoin extends JFrame {
 	 * Create the frame.
 	 */
 	public ExJoin() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("회원가입");
+		
 		setBounds(100, 100, 270, 282);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

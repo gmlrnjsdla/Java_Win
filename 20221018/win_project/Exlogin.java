@@ -76,22 +76,27 @@ public class Exlogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String ID = tf_id.getText();
 				String PW = tf_pw.getText();
-				if(ID.equals("test") && PW.equals("1234")) {
+				if(ID.equals("ici") && PW.equals("123")) {
 					System.out.println("로그인 성공했습니다.");
-					ExSuccess dlg = new ExSuccess();
-					dlg.setVisible(true);
+					ExSuccess exSuccess = new ExSuccess();
+					exSuccess.setVisible(true);
+				}
+				else {
+					System.out.println("실패!");
+					ExFail exFail = new ExFail();
+					exFail.setVisible(true);
 				}
 				
 			}
 		});
-		btnLogin.setBounds(258, 44, 79, 56);
+		btnLogin.setBounds(258, 44, 89, 56);
 		contentPane.add(btnLogin);
 		
 		JButton btnJoin = new JButton("회원가입");
 		btnJoin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ExJoin dlg = new ExJoin();
-				dlg.setVisible(true);
+				ExJoin exJoin = new ExJoin();
+				exJoin.setVisible(true);
 			}
 		});
 		btnJoin.setFont(new Font("굴림", Font.BOLD, 15));
