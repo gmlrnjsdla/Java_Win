@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Exlogin extends JFrame {
 
@@ -61,6 +63,14 @@ public class Exlogin extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		tf_id = new JTextField();
+		tf_id.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()== KeyEvent.VK_ENTER) {
+					tf_pw.requestFocus();
+				}
+			}
+		});
 		tf_id.setBounds(105, 45, 141, 21);
 		contentPane.add(tf_id);
 		tf_id.setColumns(10);
