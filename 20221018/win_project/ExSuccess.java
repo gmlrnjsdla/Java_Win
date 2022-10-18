@@ -9,10 +9,14 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ExSuccess extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -49,6 +53,10 @@ public class ExSuccess extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(133, 86, 158, 84);
 		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(24, 20, 116, 21);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
-
 }
