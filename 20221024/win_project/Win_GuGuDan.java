@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 
 public class Win_GuGuDan extends JFrame {
 
@@ -49,6 +50,7 @@ public class Win_GuGuDan extends JFrame {
 		contentPane.add(panel, BorderLayout.NORTH);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		JTextArea textArea = new JTextArea();
