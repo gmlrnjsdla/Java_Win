@@ -13,10 +13,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Win_list extends JFrame {
 
 	private JPanel contentPane;
+	public JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -70,12 +73,24 @@ public class Win_list extends JFrame {
 		JButton btnNewButton = new JButton("출력");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(list.getSelectedValuesList());
-			
-				
+				 int idx [] = list.getSelectedIndices();
+		            for(int i=0; i< idx.length; i++) {
+		               list.setSelectedIndex(idx[i]);               
+		               System.out.println(list.getSelectedValue());
+		            }
+		            list.setSelectedIndices(idx);	
+		            System.out.println(comboBox.getSelectedIndex());
+		            System.out.println(comboBox.getSelectedItem().toString());
 			}
 		});
 		btnNewButton.setBounds(195, 33, 103, 116);
 		contentPane.add(btnNewButton);
+		
+		comboBox = new JComboBox();
+		comboBox.setMaximumRowCount(5);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"홍길동", "홍길순", "이길동", "김길동", "김기동", "황길동", "윤길동", "임길동", "고길동", "차길동"}));
+		comboBox.setBounds(193, 159, 105, 28);
+		comboBox.setSelectedIndex(9);
+		contentPane.add(comboBox);
 	}
 }
