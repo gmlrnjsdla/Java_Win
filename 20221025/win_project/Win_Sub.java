@@ -24,8 +24,8 @@ public class Win_Sub extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Win_Sub() {
-		setTitle("Sub");
+	public Win_Sub(String strName) {
+		setTitle("Sub Form ("+strName+")");
 		setBounds(100, 100, 285, 117);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());

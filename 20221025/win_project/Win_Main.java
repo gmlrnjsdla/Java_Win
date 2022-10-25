@@ -9,10 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class Win_Main extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JTextField textField;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -38,6 +42,12 @@ public class Win_Main extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
+			textField = new JTextField();
+			textField.setText("홍길동");
+			contentPanel.add(textField);
+			textField.setColumns(10);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
@@ -45,7 +55,7 @@ public class Win_Main extends JDialog {
 				JButton okButton = new JButton("Show Dialog");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Win_Sub winsub = new Win_Sub();
+						Win_Sub winsub = new Win_Sub(textField.getText());
 						winsub.setModal(true);
 						winsub.setVisible(true);
 						String message = winsub.getMsg();
