@@ -11,6 +11,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Ex_10_5 extends JFrame {
 
@@ -63,9 +66,28 @@ public class Ex_10_5 extends JFrame {
 			}
 		});
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 10, 410, 241);
+		lblNewLabel.setBounds(50, 62, 325, 190);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setFocusable(true);
+		
+		JSlider slider = new JSlider();
+		slider.setMajorTickSpacing(50);
+		slider.setMinorTickSpacing(10);
+		slider.setMaximum(200);
+		slider.setPaintLabels(true);
+		slider.setPaintTicks(true);
+		slider.setBounds(90, 10, 232, 42);
+		contentPane.add(slider);
 		lblNewLabel.requestFocus();
+		
+		
+		
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				int size = slider.getValue();
+				lblNewLabel.setFont(new Font("굴림", Font.PLAIN, size));
+			}
+		});
+		
 	}
 }
