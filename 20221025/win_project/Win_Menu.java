@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -171,7 +172,45 @@ public class Win_Menu extends JDialog {
 					}
 				}
 			}
+			
+			JMenu mnu_Dialog = new JMenu("Dialog");
+			menuBar.add(mnu_Dialog);
+			
+			JMenuItem mnu_Comfirm = new JMenuItem("confirm");
+			mnu_Comfirm.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int value = JOptionPane.showConfirmDialog(null, "정말 삭제할까요?","삭제",JOptionPane.YES_NO_OPTION);
+					if(value == JOptionPane.YES_OPTION) {
+						JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+					}
+					else if(value == JOptionPane.NO_OPTION) {
+						JOptionPane.showMessageDialog(null, "삭제가 취소되었습니다.");
+					}
+				}
+			});
+			mnu_Dialog.add(mnu_Comfirm);
+			
+			JMenuItem mnu_Alert = new JMenuItem("alert");
+			mnu_Alert.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JOptionPane.showMessageDialog(null, "alert() 함수 호출");
+				}
+			});
+			mnu_Dialog.add(mnu_Alert);
+			
+			JMenuItem mnu_Input = new JMenuItem("input");
+			mnu_Input.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int sum =0;
+					String msg = JOptionPane.showInputDialog("자연수 입력");
+					
+					for(int i =1; i<=Integer.parseInt(msg); i++) {
+						sum = sum+i;
+					}
+					JOptionPane.showMessageDialog(null, "합은 "+sum+"입니다.");
+				}
+			});
+			mnu_Dialog.add(mnu_Input);
 		}
 	}
-
 }
