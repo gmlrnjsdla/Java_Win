@@ -2,13 +2,17 @@ package win_project;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class win_jdbc_test extends JDialog {
 
@@ -46,7 +50,19 @@ public class win_jdbc_test extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						try {
 							Class.forName("com.mysql.cj.jdbc.Driver");
-							} catch (ClassNotFoundException e1) {
+							Connection conn = DriverManager.getConnection
+									("jdbc:mysql://localhost:3306/sqldb", "root","1234");
+							System.out.println("DB Connected...");
+							
+							Statement stmt = conn.createStatement();
+							ResultSet rs = stmt.executeQuery("select * from usertbl");
+							
+							while(rs.next()) {
+								System.out.print(rs.getString("name")+" ");
+								System.out.println(rs.getString("addr"));
+							}
+							
+							} catch (Exception e1) {
 							e1.printStackTrace();
 							}
 					}
