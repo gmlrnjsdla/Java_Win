@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -38,7 +39,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class Win_Test extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
+	JPanel textArea = new JPanel();
 	private JTextField textField;
 
 	/**
@@ -61,15 +62,15 @@ public class Win_Test extends JDialog {
 		setTitle("Image_Viewer");
 		setBounds(100, 100, 450, 401);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(255, 255, 255));
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
+		textArea.setBackground(new Color(255, 255, 255));
+		textArea.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(textArea, BorderLayout.CENTER);
+		textArea.setLayout(null);
 		{
 			JToolBar toolBar = new JToolBar();
 			toolBar.setFloatable(false);
 			toolBar.setBounds(0, 0, 434, 27);
-			contentPanel.add(toolBar);
+			textArea.add(toolBar);
 			
 			ToolTipManager m = ToolTipManager.sharedInstance();
 			m.setEnabled(true);
@@ -92,11 +93,17 @@ public class Win_Test extends JDialog {
 		JLabel lblPicture = new JLabel("");
 		lblPicture.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPicture.setBounds(10, 37, 93, 90);
-		contentPanel.add(lblPicture);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(115, 37, 295, 259);
-		contentPanel.add(textArea);
+		textArea.add(lblPicture);
+		{
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+			scrollPane.setBounds(122, 37, 300, 259);
+			textArea.add(scrollPane);
+			
+			JTextArea textArea1 = new JTextArea();
+			scrollPane.setViewportView(textArea1);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -190,7 +197,7 @@ public class Win_Test extends JDialog {
 					mnuRed.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_DOWN_MASK));
 					mnuRed.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							contentPanel.setBackground(Color.red);
+							textArea.setBackground(Color.red);
 						}
 					});
 					mnuColor.add(mnuRed);
@@ -200,7 +207,7 @@ public class Win_Test extends JDialog {
 					mnuGreen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_DOWN_MASK));
 					mnuGreen.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							contentPanel.setBackground(Color.green);
+							textArea.setBackground(Color.green);
 						}
 					});
 					mnuColor.add(mnuGreen);
@@ -210,7 +217,7 @@ public class Win_Test extends JDialog {
 					mnuBlue.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_DOWN_MASK));
 					mnuBlue.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							contentPanel.setBackground(Color.blue);
+							textArea.setBackground(Color.blue);
 						}
 					});
 					mnuColor.add(mnuBlue);
@@ -220,10 +227,10 @@ public class Win_Test extends JDialog {
 					ckmnuRed.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(ckmnuRed.isSelected()) {
-								contentPanel.setBackground(Color.red);
+								textArea.setBackground(Color.red);
 							}
 							else {
-								contentPanel.setBackground(Color.white);
+								textArea.setBackground(Color.white);
 							}
 						}
 					});
@@ -236,6 +243,8 @@ public class Win_Test extends JDialog {
 			
 			JMenuItem mntmNewMenuItem = new JMenuItem("텍스트 열기...");
 			mntmNewMenuItem.addActionListener(new ActionListener() {
+				private AbstractButton textArea1;
+
 				public void actionPerformed(ActionEvent e) {
 					JFileChooser chooser = new JFileChooser();
 					
@@ -255,7 +264,7 @@ public class Win_Test extends JDialog {
 							while((c=fr.read()) != -1) {
 								temp = temp + (char)c;
 							}
-							textArea.setText(temp);
+							textArea1.setText(temp);
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
