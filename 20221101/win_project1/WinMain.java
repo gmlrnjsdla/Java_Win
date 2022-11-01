@@ -42,8 +42,8 @@ public class WinMain extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPane.addTab("����", new UnitLength());
-			tabbedPane.addTab("����", new UnitWeight());
+			tabbedPane.addTab("길이변환", new UnitLength());
+			tabbedPane.addTab("무게변환", new UnitWeight());
 			contentPanel.add(tabbedPane, BorderLayout.CENTER);
 		}
 		{
