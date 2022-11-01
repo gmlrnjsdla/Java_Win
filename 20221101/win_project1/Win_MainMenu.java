@@ -1,4 +1,4 @@
-package win_project;
+package win_project1;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -7,23 +7,22 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 
-public class Win_Main extends JDialog {
+public class Win_MainMenu extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	
-	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Win_Main dialog = new Win_Main();
+			Win_MainMenu dialog = new Win_MainMenu();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -34,37 +33,47 @@ public class Win_Main extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Win_Main() {
-		setTitle("MainForm");
+	public Win_MainMenu() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		{
-			textField = new JTextField();
-			textField.setText("홍길동");
-			contentPanel.add(textField);
-			textField.setColumns(10);
-		}
+		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("Show Dialog");
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Win_Sub winsub = new Win_Sub(textField.getText());
-						winsub.setModal(true);
-						winsub.setVisible(true);
-						String message = winsub.getMsg();
-						okButton.setText(message);
-					}
-				});
+				JButton okButton = new JButton("OK");
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+			}
+			{
+				JButton cancelButton = new JButton("Cancel");
+				cancelButton.setActionCommand("Cancel");
+				buttonPane.add(cancelButton);
+			}
+		}
+		{
+			JMenuBar menuBar = new JMenuBar();
+			setJMenuBar(menuBar);
+			{
+				JMenu mnNewMenu = new JMenu("단위변환기");
+				menuBar.add(mnNewMenu);
+				{
+					JMenuItem mntmNewMenuItem = new JMenuItem("길이변환...");
+					mnNewMenu.add(mntmNewMenuItem);
+				}
+				{
+					JMenuItem mntmNewMenuItem_1 = new JMenuItem("무게변환...");
+					mntmNewMenuItem_1.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							new Win_Weight();
+						}
+					});
+					mnNewMenu.add(mntmNewMenuItem_1);
+				}
 			}
 		}
 	}
