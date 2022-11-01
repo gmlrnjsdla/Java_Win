@@ -152,6 +152,114 @@ public class Win_login extends JDialog {
 			contentPanel.add(btnInsert);
 		}
 		{
+			JButton btnUpdate = new JButton("Update");
+			btnUpdate.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					try {
+						String id = tfId.getText();
+						String pw = tfPw.getText();
+						
+						
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						Connection conn = DriverManager.getConnection
+								("jdbc:mysql://localhost:3306/sqldb", "root","1234");
+						System.out.println("DB Connected...");
+						
+						
+						String prevPw = JOptionPane.showInputDialog("기존 비밀번호 입력");
+						String sql = "SELECT pw FROM logintbl WHERE id=?";
+						PreparedStatement pstmt1 = conn.prepareStatement(sql);
+						pstmt1.setString(1, id);
+						ResultSet rs = pstmt1.executeQuery();
+						
+						if(rs.next()) {
+							String dbpw = rs.getString("pw");
+							if(dbpw.equals(prevPw)) {
+								sql = "UPDATE logintbl SET pw=? WHERE id=?";
+														
+								PreparedStatement pstmt = conn.prepareStatement(sql);
+								pstmt.setString(1, pw);
+								pstmt.setString(2, id);
+								
+								pstmt.executeUpdate();
+								JOptionPane.showMessageDialog(null, "업데이트 성공!");
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "아이디가 틀렸습니다.");
+						}
+							
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				}
+			});
+			btnUpdate.setBounds(162, 122, 97, 23);
+			contentPanel.add(btnUpdate);
+		}
+		{
+			JButton btndelete = new JButton("Delete");
+			btndelete.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						String id = tfId.getText();
+						
+						
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						Connection conn = DriverManager.getConnection
+								("jdbc:mysql://localhost:3306/sqldb", "root","1234");
+						System.out.println("DB Connected...");
+						
+						String prevPw = JOptionPane.showInputDialog("비밀번호 확인");
+						String sql = "SELECT pw FROM logintbl WHERE id=?";
+						PreparedStatement pstmt1 = conn.prepareStatement(sql);
+						pstmt1.setString(1, id);
+						ResultSet rs = pstmt1.executeQuery();
+						int result = JOptionPane.showConfirmDialog(null, "정말 삭제하시겠습니까?");
+						
+						if(result == JOptionPane.YES_OPTION) {
+							if(rs.next()) {
+								String dbpw = rs.getString("pw");
+								if(dbpw.equals(prevPw)) {
+									sql = "DELETE FROM logintbl WHERE id=?";
+													
+									PreparedStatement pstmt = conn.prepareStatement(sql);
+									pstmt.setString(1, id);
+									
+									pstmt.executeUpdate();
+									JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+									
+								}
+								else {
+									JOptionPane.showMessageDialog(null, "비밀번호가 틀렸습니다.");
+									}
+							}
+							else {
+								JOptionPane.showMessageDialog(null, "아이디가 틀렸습니다.");
+								}
+						}	
+						else {
+							JOptionPane.showMessageDialog(null, "취소되었습니다.");
+						}
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				}
+			});
+			btndelete.setBounds(271, 122, 97, 23);
+			contentPanel.add(btndelete);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
