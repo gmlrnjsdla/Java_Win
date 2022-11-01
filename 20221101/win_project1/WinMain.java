@@ -12,8 +12,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
 
-public class Win_MainMenu extends JDialog {
+public class WinMain extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -22,7 +23,7 @@ public class Win_MainMenu extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Win_MainMenu dialog = new Win_MainMenu();
+			WinMain dialog = new WinMain();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -33,12 +34,18 @@ public class Win_MainMenu extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public Win_MainMenu() {
-		setBounds(100, 100, 450, 300);
+	public WinMain() {
+		setBounds(100, 100, 660, 557);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		{
+			JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane.addTab("����", new UnitLength());
+			tabbedPane.addTab("����", new UnitWeight());
+			contentPanel.add(tabbedPane, BorderLayout.CENTER);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -59,23 +66,34 @@ public class Win_MainMenu extends JDialog {
 			JMenuBar menuBar = new JMenuBar();
 			setJMenuBar(menuBar);
 			{
-				JMenu mnNewMenu = new JMenu("단위변환기");
-				menuBar.add(mnNewMenu);
+				JMenu mnUnit = new JMenu("\uB2E8\uC704\uBCC0\uD658\uAE30");
+				menuBar.add(mnUnit);
 				{
-					JMenuItem mntmNewMenuItem = new JMenuItem("길이변환...");
-					mnNewMenu.add(mntmNewMenuItem);
-				}
-				{
-					JMenuItem mntmNewMenuItem_1 = new JMenuItem("무게변환...");
-					mntmNewMenuItem_1.addActionListener(new ActionListener() {
+					JMenuItem mnLength = new JMenuItem("\uAE38\uC774\uBCC0\uD658...");
+					mnLength.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							new Win_Weight();
+							WinUnitConv dlg = new WinUnitConv();
+							dlg.setModal(true);
+							dlg.setVisible(true);
 						}
 					});
-					mnNewMenu.add(mntmNewMenuItem_1);
+					mnUnit.add(mnLength);
+				}
+				{
+					JMenuItem mnWeight = new JMenuItem("\uBB34\uAC8C\uBCC0\uD658...");
+					mnWeight.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							WinWeightConv dlg = new WinWeightConv();
+							dlg.setModal(true);
+							dlg.setVisible(true);
+						}
+					});
+					mnUnit.add(mnWeight);
 				}
 			}
+			
+			JMenu mnLotto = new JMenu("Lotto");
+			menuBar.add(mnLotto);
 		}
 	}
-
 }
