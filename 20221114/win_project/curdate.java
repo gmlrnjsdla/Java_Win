@@ -46,7 +46,7 @@ public class curdate extends JDialog {
 	 * Create the dialog.
 	 */
 	public curdate() {
-		setBounds(100, 100, 340, 282);
+		setBounds(100, 100, 336, 368);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -164,6 +164,27 @@ public class curdate extends JDialog {
 		tfday1.setColumns(10);
 		tfday1.setBounds(110, 203, 116, 21);
 		contentPanel.add(tfday1);
+		
+		JButton btncreate = new JButton("CREATE DB");
+		btncreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					Connection conn = DriverManager.getConnection
+							("jdbc:mysql://localhost:3306/sqldb", "root","1234");
+					
+					String sql = "CREATE DATABASE moviedb";
+					Statement stmt = conn.createStatement();
+					stmt.executeUpdate(sql);
+					
+					
+					} catch (Exception e1) {
+					e1.printStackTrace();
+					}
+			}
+		});
+		btncreate.setBounds(110, 249, 109, 23);
+		contentPanel.add(btncreate);
 		
 		
 	}
