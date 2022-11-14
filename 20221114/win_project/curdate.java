@@ -27,6 +27,7 @@ public class curdate extends JDialog {
 	private JTextField tfYear;
 	private JTextField tfMonth;
 	private JTextField tfDay;
+	private JTextField tfday1;
 
 	/**
 	 * Launch the application.
@@ -111,19 +112,29 @@ public class curdate extends JDialog {
 							("jdbc:mysql://localhost:3306/sqldb", "root","1234");
 					
 					String diff = tfDiff.getValue().toString();
-					String sql = "SELECT curdate(), ADDDATE(curdate(), INTERVAL "+diff+" DAY)";
+					String sql = "SELECT curdate() as 현재날짜, ADDDATE(curdate(), INTERVAL "+diff+" DAY),"
+							+ "CASE dayofweek(ADDDATE(curdate(), INTERVAL "+diff+" DAY)) "
+							+ "when 1 then '일요일'"
+							+ "when 2 then '월요일'"
+							+ "when 3 then '화요일'"
+							+ "when 4 then '수요일'"
+							+ "when 5 then '목요일'"
+							+ "when 6 then '금요일'"
+							+ "when 7 then '토요일' end";
 					
 					Statement stmt = conn.createStatement();
 					ResultSet rs = stmt.executeQuery(sql);
 					
 					if(rs.next()) {
-						String date = rs.getString(1);
+						String date = rs.getString("현재날짜");
 						String date2 = rs.getString(2);
+						String day = rs.getString(3);
 						tfToday.setText(date);
 						
 						tfYear.setText(date2.substring(0, 4)+"년");
 						tfMonth.setText(date2.substring(5, 7)+"월");
 						tfDay.setText(date2.substring(8, 10)+"일");
+						tfday1.setText(day);
 						
 						
 					}
@@ -143,6 +154,16 @@ public class curdate extends JDialog {
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setBounds(134, 90, 57, 15);
 		contentPanel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("요일");
+		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_3_1.setBounds(37, 206, 57, 15);
+		contentPanel.add(lblNewLabel_3_1);
+		
+		tfday1 = new JTextField();
+		tfday1.setColumns(10);
+		tfday1.setBounds(110, 203, 116, 21);
+		contentPanel.add(tfday1);
 		
 		
 	}
