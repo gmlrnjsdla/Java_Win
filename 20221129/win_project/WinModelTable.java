@@ -57,6 +57,7 @@ public class WinModelTable extends JDialog {
 			@Override
 			public void windowOpened(WindowEvent e) {
 				tfName.requestFocus();
+				table();
 			}
 		});
 		setBounds(100, 100, 505, 502);
@@ -232,10 +233,23 @@ public class WinModelTable extends JDialog {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(table.getSelectedRow());
+				int idx = table.getSelectedRow();
+				if(idx != -1) {
+					String name = (String)table.getValueAt(table.getSelectedRow(),1);
+					String kor = (String)table.getValueAt(table.getSelectedRow(),2);
+					String eng = (String)table.getValueAt(table.getSelectedRow(),3);
+					String math = (String)table.getValueAt(table.getSelectedRow(),4);
+					
+					tfName.setText(name);
+					tfKor.setText(kor);
+					tfEng.setText(eng);
+					tfMath.setText(math);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "삭제할 행을 선택하세요");
+			
 			}
 		});
-		table();
 		scrollPane.setViewportView(table);
 		
 		JButton btnAdd_1 = new JButton("레코드 삭제");
@@ -249,7 +263,7 @@ public class WinModelTable extends JDialog {
 						Connection conn = DriverManager.getConnection
 								("jdbc:mysql://localhost:3306/sqldb", "root","1234");
 						
-						String no = (String)table.getValueAt(table.getSelectedRow(),0);  
+						String no = (String)table.getValueAt(table.getSelectedRow(),0);
 						
 						String sql ="DELETE FROM scoretbl WHERE idx = '"+no+"'"; 
 						Statement stmt = conn.createStatement();
@@ -270,6 +284,52 @@ public class WinModelTable extends JDialog {
 		});
 		btnAdd_1.setBounds(269, 144, 110, 23);
 		contentPanel.add(btnAdd_1);
+		
+		JButton btnAdd_1_1 = new JButton("레코드 수정");
+		btnAdd_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idx = table.getSelectedRow();
+				if(idx != -1) {
+					int sum = Integer.parseInt(tfKor.getText());
+					sum += Integer.parseInt(tfEng.getText());
+					sum += Integer.parseInt(tfMath.getText());
+					tfTotal.setText(Integer.toString(sum));
+					tfAverage.setText(Double.toString(sum/3));
+					
+					try {
+						Class.forName("com.mysql.cj.jdbc.Driver");
+						Connection conn = DriverManager.getConnection
+								("jdbc:mysql://localhost:3306/sqldb", "root","1234");
+						
+						String no = (String)table.getValueAt(table.getSelectedRow(),0);
+						
+						String name = tfName.getText();
+						String kor = tfKor.getText();
+						String eng = tfEng.getText();
+						String math = tfMath.getText();
+						String total = tfTotal.getText();
+						String avr = tfAverage.getText();
+						
+						String sql ="UPDATE scoretbl SET name='"+name+"',korean='"+kor+"',english='"+eng+"'"
+								+ ",math='"+math+"',total='"+total+"',average='"+avr+"' WHERE idx='"+no+"'"; 
+						Statement stmt = conn.createStatement();
+						stmt.executeUpdate(sql);
+						
+						} catch (Exception e1) {
+						e1.printStackTrace();
+						}
+					
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.setRowCount(0);
+					table();
+				}else {
+					JOptionPane.showMessageDialog(null, "수정할 행을 선택하세요");
+				}
+			}
+		});
+		
+		btnAdd_1_1.setBounds(269, 113, 110, 23);
+		contentPanel.add(btnAdd_1_1);
 	}
 	
 	
