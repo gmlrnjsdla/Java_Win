@@ -2,13 +2,14 @@ package win_project;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 
 public class WinTable extends JDialog {
 
@@ -41,12 +42,32 @@ public class WinTable extends JDialog {
 			JScrollPane scrollPane = new JScrollPane();
 			contentPanel.add(scrollPane, BorderLayout.CENTER);
 			{
-				String columns[] = {"이름", "국어", "영어", "수학"};
-				String records[][] = {
-						{"홍길동","11","22","33"},
-						{"홍길순","91","92","83"},
-						{"김길동","51","62","73"}
-				};
+				Scanner sc = new Scanner(System.in);
+				
+				
+				int sum = 0;
+				String avr;
+				String columns[] = {"이름", "국어", "영어", "수학", "총점", "평균"};
+				String records[][] = new String [5][6];
+				
+				for(int i =0; i<5; i++) {
+					System.out.print("이름 : ");
+					records[i][0] = sc.next();
+					System.out.print("국어 : ");
+					records[i][1] = sc.next();
+					System.out.print("영어 : ");
+					records[i][2] = sc.next();
+					System.out.print("수학 : ");
+					records[i][3] = sc.next();
+					
+					sum = Integer.parseInt(records[i][1]);
+					sum = sum + Integer.parseInt(records[i][2]);
+					sum = sum + Integer.parseInt(records[i][3]);
+					records[i][4] = Integer.toString(sum);
+					records[i][5] = Double.toString(sum/3);
+					
+				}
+				
 				table = new JTable(records,columns);
 				scrollPane.setViewportView(table);
 			}
